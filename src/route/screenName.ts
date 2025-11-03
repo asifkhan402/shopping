@@ -1,4 +1,6 @@
 export enum screenName {
     DetailScreen = 'DetailScreen',
-    Home = 'Home'
+    Home = 'Home',
+    Drawer = 'Drawer',
+    Welcome = 'Welcome'
 }

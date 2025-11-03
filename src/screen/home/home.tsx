@@ -1,12 +1,87 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Header from '../../component/header/header'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
+import styles from './style'
+import Carousel from 'react-native-reanimated-carousel'
+import sliderData from '../../utills/silder'
+import images from '../../assets/image'
+import DrawerNavigator from '../../route/drawar/drawar'
+import { screenName } from '../../route/screenName'
+const { width } = Dimensions.get('window');
 
 const Home = () => {
+
+    const navigation = useNavigation<any>()
+
+    const [activeIndex, setactiveIndex] = useState(0)
     return (
-        <View>
-            <Text>Home</Text>
-        </View>
-    )
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <Header label="Welcome" onPressMenu={() => navigation.dispatch(DrawerActions.openDrawer())} />
+
+                <Carousel
+                    width={width}
+                    height={200}
+                    autoPlay
+                    loop
+                    scrollAnimationDuration={1000}
+                    data={sliderData}
+                    onSnapToItem={(index) => setactiveIndex(index)}
+                    renderItem={({ item }) => (
+                        <View style={styles.slide}>
+                            <Image source={{ uri: item.image }} style={styles.image} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </View>
+                    )}
+                />
+
+                <View style={styles.dotContainer}>
+                    {sliderData.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.dot,
+                                activeIndex === index && styles.activeDot,
+                            ]}
+                        />
+                    ))}
+                </View>
+                <Text style={styles.textStyle}>Category</Text>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity style={styles.touchItem}>
+                        <Image style={styles.imageStyle} source={images.Dress} />
+                        <Text style={styles.touchText}>DRESS</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.touchItem}>
+                        <Image style={styles.imageStyle} source={images.Sports} />
+                        <Text style={styles.touchText}>SPORTS</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.touchItem}>
+                        <Image style={styles.imageStyle} source={images.Funiture} />
+                        <Text style={styles.touchText}>FURNITURE</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.touchItem}>
+                        <Image style={styles.imageStyle} source={images.foods} />
+                        <Text style={styles.touchText}>FOODS</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.touchItem}>
+                        <Image style={styles.imageStyle} source={images.Materical} />
+                        <Text style={styles.touchText}>MATERIAL</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+
+        </SafeAreaView>
+    );
 }
+
+
+
 
 export default Home

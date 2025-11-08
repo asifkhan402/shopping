@@ -19,7 +19,6 @@ const DressScreen = () => {
         { id: 8, title: "Yellow Dress", image: "https://picsum.photos/203/300", price: 35.99 },
     ];
 
-    // Filtered dresses based on search text
     const filteredDresses = useMemo(() => {
 
         return dresses.filter((dress) =>
@@ -27,20 +26,18 @@ const DressScreen = () => {
         );
     }, [searchText]);
 
-    const handleAddToCart = (item: any) => {
+    const handleAddToCart = (item) => {
         Alert.alert("Added to Cart", item.title);
     };
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
-                {/* Search Bar */}
                 <SearchBar value={searchText} onChange={setSearchText} />
 
                 <View style={styles.conatiner}>
                     <Text style={styles.textStyle}>Dress For Sales</Text>
 
-                    {/* Dress List filtered */}
                     <DressList data={filteredDresses} onAddToCart={handleAddToCart} />
                 </View>
             </ScrollView>

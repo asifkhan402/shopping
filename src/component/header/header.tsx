@@ -8,7 +8,7 @@ type HeaderProps = {
     onPressMenu: () => void
 }
 const Header: React.FC<HeaderProps> = ({ label, onPressMenu }) => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<any>()
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()}>

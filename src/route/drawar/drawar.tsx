@@ -22,8 +22,9 @@ export default function DrawerNavigator() {
             }}
 
         >
-            <Drawer.Screen name={screenName.DetailScreen} component={DetailScreen} />
             <Drawer.Screen name={screenName.Home} component={Home} />
+            <Drawer.Screen name={screenName.DetailScreen} component={DetailScreen} />
+
         </Drawer.Navigator>
     );
 }

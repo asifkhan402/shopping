@@ -5,10 +5,10 @@ import Header from '../../component/header/header'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
 import styles from './style'
 import Carousel from 'react-native-reanimated-carousel'
-import sliderData from '../../utills/silder'
 import images from '../../assets/image'
 import DrawerNavigator from '../../route/drawar/drawar'
 import { screenName } from '../../route/screenName'
+import { sliderData } from '../../utills/silder'
 const { width } = Dimensions.get('window');
 
 const Home = () => {

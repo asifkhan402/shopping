@@ -3,13 +3,12 @@ import {
     View,
     Text,
     Image,
-    StyleSheet,
     TouchableOpacity,
     FlatList,
-    Dimensions,
 } from "react-native";
+import styles from "./styles";
 
-type DressItem = {
+export type DressItem = {
     id: number;
     title: string;
     image: string;
@@ -21,18 +20,28 @@ type Props = {
     onAddToCart: (item: DressItem) => void;
 };
 
-const { width } = Dimensions.get("window");
-
 const DressList: React.FC<Props> = ({ data, onAddToCart }) => {
+
     const renderItem = ({ item }: { item: DressItem }) => (
         <View style={styles.card}>
-            <Image source={{ uri: item.image }} style={styles.image} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+            <Image
+                source={{ uri: item.image }}
+                style={styles.image}
+                resizeMode="cover"
+            />
+
+            <View style={styles.info}>
+                <Text style={styles.title} numberOfLines={1}>
+                    {item.title}
+                </Text>
+
+                <Text style={styles.price}>Rs {item.price}</Text>
+            </View>
 
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => onAddToCart(item)}
+                activeOpacity={0.8}
             >
                 <Text style={styles.buttonText}>Add to Cart</Text>
             </TouchableOpacity>
@@ -44,46 +53,12 @@ const DressList: React.FC<Props> = ({ data, onAddToCart }) => {
             data={data}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
-            contentContainerStyle={{ padding: 10 }}
-            numColumns={2} // optional 2-column grid
-            columnWrapperStyle={{ justifyContent: "space-between" }}
+            numColumns={2}
+            columnWrapperStyle={styles.row}
+            contentContainerStyle={styles.list}
+            showsVerticalScrollIndicator={false}
         />
     );
 };
 
 export default DressList;
-
-const styles = StyleSheet.create({
-    card: {
-        backgroundColor: "#fff",
-        width: (width - 40) / 2,
-        borderRadius: 12,
-        marginBottom: 15,
-    },
-    image: {
-        width: "100%",
-        height: 150,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: "600",
-        margin: 8,
-    },
-    price: {
-        fontSize: 14,
-        color: "#555",
-        marginHorizontal: 8,
-    },
-    button: {
-        backgroundColor: "#4CAF50",
-        paddingVertical: 8,
-        margin: 8,
-        borderRadius: 8,
-        alignItems: "center",
-    },
-    buttonText: {
-        color: "#fff",
-        fontWeight: "600",
-        fontSize: 14,
-    },
-});

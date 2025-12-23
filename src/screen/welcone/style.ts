@@ -23,35 +23,38 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: 'white',
-        fontStyle: 'italic',
-        marginBottom: 10,
+        fontSize: 28,
+        fontWeight: '800',
+        color: '#222',
+        textAlign: 'center',
+        marginBottom: 12,
     },
     subtitle: {
-        fontSize: 16,
-        color: '#fff',
+        fontSize: 17,
+        fontWeight: '500',
+        color: '#666',
         textAlign: 'center',
-        marginBottom: 40,
-        paddingHorizontal: 12
+        lineHeight: 24,
+        paddingHorizontal: 15,
     },
     button: {
-        backgroundColor: 'white',
-        paddingVertical: 12,
-        paddingHorizontal: 40,
-        borderRadius: 30,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 5,
+        backgroundColor: '#ff6f61',
+        paddingVertical: 16,
+        borderRadius: 14,
+        alignItems: 'center',
+
     },
     buttonText: {
-        color: '#ee88a5ff',
-        fontWeight: 'bold',
-        fontSize: 18,
+        color: '#fff',
+        fontSize: 17,
+        fontWeight: '700',
     },
+    buttomContainer: {
+        marginTop: 100,
+        justifyContent: 'flex-end',
+        width: '100%',
+        paddingHorizontal: 30,
+    }
 });
 
 export default styles
